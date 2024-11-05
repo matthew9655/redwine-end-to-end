@@ -1,0 +1,9 @@
+uvicorn
+fastapi
+loguru
+pydantic
+pydantic-settings
+pytest
+setuptools 
+wheel
+red-wine-model-matthew9655
