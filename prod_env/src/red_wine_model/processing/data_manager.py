@@ -1,7 +1,6 @@
 import logging
-import re
 from pathlib import Path
-from typing import Any, List, Union
+from typing import List
 
 import joblib
 import numpy as np
@@ -13,17 +12,18 @@ from red_wine_model.config.core import DATASET_DIR, TRAINED_MODEL_DIR, config
 
 logger = logging.getLogger(__name__)
 
+
 def pre_pipeline_preparation(*, dataframe: pd.DataFrame) -> pd.DataFrame:
-    
+
     # remove outliers from total sulfur dioxider
-    data = dataframe[dataframe['total sulfur dioxide'] <= 150].reset_index(drop=True)
+    data = dataframe[dataframe["total sulfur dioxide"] <= 150].reset_index(drop=True)
 
     # drop unnecessary variables
     data.drop(labels=config.m_config.unused_fields, axis=1, inplace=True)
-    
+
     # replace quality with good
     data["good"] = np.where(data["quality"] >= 7, 1, 0)
-    data = data.drop("quality", axis=1) 
+    data = data.drop("quality", axis=1)
 
     return data
 

@@ -7,6 +7,3 @@ strictyaml
 pathlib
 pytest
 tox
-flake8
-black
-isort
