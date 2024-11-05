@@ -7,6 +7,7 @@ from sklearn.metrics import accuracy_score
 
 from red_wine_model.predict import make_prediction
 
+
 def test_make_prediction(sample_input_data):
     x_test, y_test = sample_input_data
     # Given

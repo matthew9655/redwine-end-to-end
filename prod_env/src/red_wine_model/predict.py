@@ -1,6 +1,5 @@
 import typing as t
 
-import numpy as np
 import pandas as pd
 
 from red_wine_model import __version__ as _version
@@ -25,11 +24,9 @@ def make_prediction(
     print(results)
 
     if not errors:
-        predictions = red_wine_pipe.predict(
-            X=validated_data[config.m_config.features]
-        )
+        predictions = red_wine_pipe.predict(X=validated_data[config.m_config.features])
         results = {
-            "predictions": predictions,  # type: ignore
+            "predictions": predictions,
             "version": _version,
             "errors": errors,
         }

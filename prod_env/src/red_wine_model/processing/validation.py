@@ -1,11 +1,10 @@
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
-from pydantic import BaseModel, ValidationError, Field
+from pydantic import BaseModel, Field, ValidationError
 
 from red_wine_model.config.core import config
-from red_wine_model.processing.data_manager import pre_pipeline_preparation
 
 
 def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[dict]]:
@@ -23,6 +22,7 @@ def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional
         errors = error.json()
 
     return validated_data, errors
+
 
 class WineDataInputSchema(BaseModel):
     fixed_acidity: Optional[float] = Field(alias="fixed acidity")

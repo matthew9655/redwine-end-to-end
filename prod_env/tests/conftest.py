@@ -21,7 +21,7 @@ def sample_input_data():
         # we are setting the random seed here
         # for reproducibility
         random_state=config.m_config.random_state,
-        stratify=data[config.m_config.target]
+        stratify=data[config.m_config.target],
     )
 
     return X_test, y_test
