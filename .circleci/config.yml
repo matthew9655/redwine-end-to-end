@@ -271,7 +271,11 @@ workflows:
   version: 2
   test_prod:
     jobs:
-      - test_prod
+      - test_prod:
+        filters:
+          branches:
+            only:
+              - main
   # deploy_pipeline:
   #   jobs:
   #     - section_07_test_app
