@@ -21,6 +21,12 @@ prepare_tox: &prepare_tox
     command: |
       pip install --user tox
 
+prepare_build: &prepare_build
+  run:
+    name: Install build packages
+    command: |
+      pip install --user build twine
+
 jobs:
   test_prod:
     <<: *defaults
@@ -34,6 +40,19 @@ jobs:
           command: |
             tox
 
+  upload_to_pypi:
+    <<: *defaults
+    working_directory: ~/project/prod_env/
+    steps:
+      - checkout:
+          path: ~/project
+      - *prepare_build
+      - run:
+          name: Runnning prod_env tests
+          command: |
+            python3 -m build 
+            python3 -m twine upload -r pypi dist/*
+          
   test_app:
     <<: *defaults
     working_directory: ~/project/fastapi/
@@ -268,24 +287,23 @@ tags_only: &tags_only
 
 workflows:
   version: 2
-  test_prod:
-    jobs:
-      - test_prod:
-        filters:
-          branches:
-            only:
-              - main
-  # deploy_pipeline:
+  # test_prod:
   #   jobs:
-  #     - section_07_test_app
-  #     - section_07_deploy_app_to_railway:
-  #         requires:
-  #           - section_07_test_app
-  #         filters:
-  #           branches:
-  #             only:
-  #               - master
-  #               - demo
+  #     - test_prod:
+  #       filters:
+  #         branches:
+  #           only:
+  #             - main
+  deploy_to_pypi:
+    jobs:
+      - test_prod
+      - upload_to_pypi:
+          requires:
+            - test_prod
+          filters:
+            branches:
+              only:
+                - main
   #     # upload after git tags are created
   #     - section_07_test_and_upload_regression_model:
   #         <<: *tags_only
