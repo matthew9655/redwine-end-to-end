@@ -76,7 +76,7 @@ jobs:
       - run: node --version
       - run: npm i -g @railway/cli
       - run:
-          name: Deploy to Railway App (You must set RAILWAY_TOKEN env var)
+          name: Deploy to Railway App with Docker (You must set RAILWAY_TOKEN env var)
           command: |
             cd fastapi && railway up --detach
 
@@ -290,22 +290,38 @@ workflows:
   version: 2
   test_prod_and_api:
     jobs:
+      - test_app:
+        filters:
+          branches:
+            only:
+              - main
       - test_prod:
         filters:
           branches:
             only:
               - main
-  deploy_to_pypi:
+  
+  deploy_to_railway:
     jobs:
-      - test_prod
-      - test_app
-      # - upload_to_pypi:
-      #     requires:
-      #       - test_prod
-      #     filters:
-      #       branches:
-      #         only:
-      #           - main
+      - deploy_app_to_railway:
+        requires:
+          - test_prod_and_api
+        filters:
+          branches:
+            only:
+              - main
+  
+  # deploy_to_pypi:
+  #   jobs:
+  #     - test_prod
+  #     - upload_to_pypi:
+  #         requires:
+  #           - test_prod
+  #         filters:
+  #           branches:
+  #             only:
+  #               - main
+
   #     # upload after git tags are created
   #     - section_07_test_and_upload_regression_model:
   #         <<: *tags_only
