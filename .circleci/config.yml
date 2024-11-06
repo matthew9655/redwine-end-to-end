@@ -289,16 +289,14 @@ tags_only: &tags_only
 workflows:
   version: 2
 
-  deploy_railway:
+  deploy_app_to_railway:
     jobs:
-      - test_app
       - deploy_app_to_railway:
-        requires:
-          - test_app
-        filters:
-          branches:
-            only:
-              - main
+          requires: test_app
+          filters:
+            branches:
+              only:
+                - main
 
   # test_prod_and_api:
   #   jobs:
