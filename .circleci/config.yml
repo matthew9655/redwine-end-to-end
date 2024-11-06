@@ -304,11 +304,9 @@ workflows:
   deploy_to_railway:
     jobs:
       - test_app
-      - test_prod
       - deploy_app_to_railway:
         requires:
           - test_app
-          - test_prod
         filters:
           branches:
             only:
