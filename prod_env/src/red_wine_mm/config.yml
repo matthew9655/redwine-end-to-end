@@ -11,7 +11,7 @@ test_data_file: test.csv
 target: good
 
 pipeline_name: red-wine-pipeline
-pipeline_save_file: red-wine-model-outputsv
+pipeline_save_file: red-wine-mm-outputsv
 
 features:
   - fixed acidity

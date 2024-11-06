@@ -6,10 +6,10 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "red-wine-model-matthew9655"
+name = "red-wine-mm"
 description = "A red wine classification model"
 readme = "README.md"
-version = "0.0.1"
+version = "0.0.3"
 authors = [{name = "Matthew Choi", email = "matt.choi531@gmail.com"}]
 classifiers = [
     "Programming Language :: Python :: 3",

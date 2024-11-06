@@ -3,16 +3,17 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
 from loguru import logger
-from red_wine_model import __version__ as model_version
-from red_wine_model.predict import make_prediction
+from red_wine_mm import __version__ as model_version
+from red_wine_mm.predict import make_prediction
 
 from app import __version__, schemas
 from app.config import settings
+from fastapi import APIRouter, HTTPException
 
 api_router = APIRouter()
+
 
 @api_router.get("/health", response_model=schemas.Health, status_code=200)
 def health() -> dict:

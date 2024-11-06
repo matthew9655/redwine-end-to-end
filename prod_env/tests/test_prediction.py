@@ -5,7 +5,7 @@ Note: These tests will fail if you have not first trained the model.
 import numpy as np
 from sklearn.metrics import accuracy_score
 
-from red_wine_model.predict import make_prediction
+from red_wine_mm.predict import make_prediction
 
 
 def test_make_prediction(sample_input_data):

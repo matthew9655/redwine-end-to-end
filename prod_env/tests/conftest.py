@@ -3,8 +3,8 @@ import logging
 import pytest
 from sklearn.model_selection import train_test_split
 
-from red_wine_model.config.core import config
-from red_wine_model.processing.data_manager import load_dataset
+from red_wine_mm.config.core import config
+from red_wine_mm.processing.data_manager import load_dataset
 
 logger = logging.getLogger(__name__)
 

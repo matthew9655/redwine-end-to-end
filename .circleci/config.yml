@@ -297,13 +297,14 @@ workflows:
   deploy_to_pypi:
     jobs:
       - test_prod
-      - upload_to_pypi:
-          requires:
-            - test_prod
-          filters:
-            branches:
-              only:
-                - main
+      - test_app
+      # - upload_to_pypi:
+      #     requires:
+      #       - test_prod
+      #     filters:
+      #       branches:
+      #         only:
+      #           - main
   #     # upload after git tags are created
   #     - section_07_test_and_upload_regression_model:
   #         <<: *tags_only

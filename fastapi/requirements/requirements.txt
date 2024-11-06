@@ -6,4 +6,5 @@ pydantic-settings
 pytest
 setuptools 
 wheel
-red-wine-model-matthew9655
+red-wine-mm==0.0.3
+httpx

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from pydantic import BaseModel, Field, ValidationError
 
-from red_wine_model.config.core import config
+from red_wine_mm.config.core import config
 
 
 def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[dict]]:

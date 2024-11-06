@@ -3,7 +3,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-from red_wine_model.config.core import config
+from red_wine_mm.config.core import config
 
 red_wine_pipe = Pipeline(
     [
