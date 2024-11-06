@@ -288,7 +288,7 @@ tags_only: &tags_only
 
 workflows:
   version: 2
-  
+
   deploy_railway:
     jobs:
       - test_app
