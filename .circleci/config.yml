@@ -277,7 +277,7 @@ workflows:
   deploy_app_to_railway:
     jobs:
       - test_app
-      - deploy_app_container_via_ralway:
+      - deploy_app_container_via_railway:
           requires:
             - test_app
           filters:
