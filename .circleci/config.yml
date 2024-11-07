@@ -81,7 +81,7 @@ jobs:
       - run:
           name: Build and run Dockerfile (see https://docs.railway.app/deploy/dockerfiles)
           command: |
-            cd fastapi && railway link -p $RAILWAY_PROJECT_ID && railway up --detach
+            cd fastapi && railway up --detach
 
   section_07_test_and_upload_regression_model:
     <<: *defaults
