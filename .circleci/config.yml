@@ -81,7 +81,7 @@ jobs:
       - run:
           name: Build and run Dockerfile (see https://docs.railway.app/deploy/dockerfiles)
           command: |
-            cd red_wine_app && railway up --detach
+            cd red_wine_app && railway up --detach -s $RAILWAY_SERVICE_NAME
 
   section_07_test_and_upload_regression_model:
     <<: *defaults
