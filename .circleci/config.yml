@@ -103,24 +103,6 @@ jobs:
           command: |
             tox -e publish_model
 
-
-  section_08_deploy_app_container_via_railway:
-    <<: *defaults
-    steps:
-      - setup_remote_docker:
-          # Supported versions: https://circleci.com/docs/2.0/building-docker-images/#docker-version
-          version: 20.10.18
-      - checkout:
-          path: ~/project/
-      - node/install:
-          node-version: '16.13'
-      - run: node --version
-      - run: npm i -g @railway/cli
-      - run:
-          name: Build and run Dockerfile (see https://docs.railway.app/deploy/dockerfiles)
-          command: |
-            cd section-08-deploying-with-containers && railway up --detach
-
   test_regression_model_py37:
     docker:
       - image: circleci/python:3.7.6
@@ -292,21 +274,12 @@ tags_only: &tags_only
 workflows:
   version: 2
 
-  # deploy_to_pypi:
-  #   jobs:
-  #     - test_app
-  #     - upload_to_pypi:
-  #         requires:
-  #           - test_prod
-  #         filters:
-  #           branches:
-  #             only:
-  #               - main
-
   deploy_app_to_railway:
     jobs:
-      - deploy_app_container_via_railway:
-          requires: test_app
+      - test_app
+      - deploy_app_container_via_ralway:
+          requires:
+            - test_app
           filters:
             branches:
               only:
