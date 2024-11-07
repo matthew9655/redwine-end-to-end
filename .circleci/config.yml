@@ -75,7 +75,7 @@ jobs:
       - checkout:
           path: ~/project/
       - node/install:
-          node-version: '16.13'
+          node-version: '23.1'
       - run: node --version
       - run: npm i -g @railway/cli
       - run:
