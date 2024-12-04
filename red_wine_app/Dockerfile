@@ -5,7 +5,6 @@ RUN adduser --disabled-password --gecos '' ml-api-user
 
 WORKDIR /opt/fastapi
 
-# Install requirements, including from Gemfury
 ADD ./fastapi /opt/fastapi/
 RUN pip install --upgrade pip
 RUN pip install -r /opt/fastapi/requirements/requirements.txt

@@ -1,7 +1,9 @@
 from typing import Any
 
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from loguru import logger
 
 from app.api import api_router
@@ -12,11 +14,27 @@ from fastapi import APIRouter, FastAPI, Request
 setup_app_logging(config=settings)
 
 
-app = FastAPI(
-    title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json"
-)
+app = FastAPI(title=settings.PROJECT_NAME, docs_url=None, redoc_url=None)
+
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 root_router = APIRouter()
+
+
+@app.get("/docs", include_in_schema=False)
+def overridden_swagger():
+    return get_swagger_ui_html(
+        openapi_url="/openapi.json",
+        title="FastAPI",
+        swagger_favicon_url="static/red.png",
+    )
+
+
+@app.get("/redoc", include_in_schema=False)
+def overridden_redoc():
+    return get_redoc_html(
+        openapi_url="/openapi.json", title="FastAPI", redoc_favicon_url="static/red.png"
+    )
 
 
 @root_router.get("/")
@@ -55,4 +73,4 @@ if __name__ == "__main__":
     logger.warning("Running in development mode. Do not run like this in production.")
     import uvicorn
 
-    uvicorn.run(app, host="localhost", port=8001, log_level="debug")
+    uvicorn.run(app, host="localhost", port=8000, log_level="debug")

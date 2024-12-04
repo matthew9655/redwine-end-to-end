@@ -1,16 +1,23 @@
-# Productionized Titanic Classification Model Package
+# Production Environment
 
-## Run With Tox (Recommended)
-- Download the data from: https://www.openml.org/data/get_csv/16826755/phpMYEkMl
-- Save the file as `raw.csv` in the classification_model/datasets directory
-- `pip install tox`
-- Make sure you are in the assignment-section-05 directory (where the tox.ini file is) then run the command: `tox` (this runs the tests and typechecks, trains the model under the hood). The first time you run this it creates a virtual env and installs
-dependencies, so takes a few minutes.
+## Manual Installation
 
-## Run Without Tox
-- Download the data from: https://www.openml.org/data/get_csv/16826755/phpMYEkMl
-- Save the file as `raw.csv` in the classification_model/datasets directory
-- Add assignment-section-05 *and* classification_model paths to your system PYTHONPATH
-- `pip install -r requirements/test_requirements`
-- Train the model: `python classification_model/train_pipeline.py`
-- Run the tests `pytest tests`
+`pip install -r requirements/requirements.txt && pip install -r requirements/typing_requirements.txt`
+
+## Packaging
+
+To run all scripts, we will be using `tox` for its environment management capabilities. 
+
+To train the model, perform tests and styling, simply run `tox`.
+
+To only train the model, run `tox run -e train`. Consequently, there should be a model under `src/red_wine_mm/trained_models`. More details can be found in the `tox.ini` file. 
+
+
+## Deploying to PyPI
+
+In this work, I deploy the production environment as a package in PyPI to make it easier to install the package in the app section. However, package names and versions have to be unique, so change the project name and version in `pyproject.toml` to something different. These restrictions will persist even if the package has been deleted from PyPI. 
+
+Create a PyPI account at https://pypi.org/ and create a token, when prompted to login through the CLI, the username is `__token__` and the password is the created token. 
+
+To manually deploy, run `deploy.sh`.
+
