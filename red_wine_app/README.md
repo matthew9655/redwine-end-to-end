@@ -5,7 +5,7 @@
  - predict: takes input parameters and passes it through the model to make a prediction
 
 ## Pushing to AWS
-Create a `.env` file and create the following variables:
+Create a `.env` file and create the following variables if you wish to push to AWS manually. If not add these variables to circleCI.
 
 `AWS_ACCOUNT_NUMBER`: your AWS account number 
 
