@@ -6,8 +6,11 @@
 
 ## Pushing to AWS
 Create a `.env` file and create the following variables:
+
 `AWS_ACCOUNT_NUMBER`: your AWS account number 
+
 `AWS_REGION`: your AWS region, like `us-east-1`
+
 run `./push_to_aws.sh`
 
 ## How to deploy
@@ -16,5 +19,5 @@ run `./push_to_aws.sh`
 3. Create a new task definition and make sure to use `Linux/ARM` as the OS and set the number of CPUS and RAM you need. 
 4. Now back at the cluster, Create a new task. You should see your task definition under task families. 
 5. Under networking in "Create a new task" -> "Create a new security group" -> Inbound Rules -> Set Type to HTTP and Source anywhere, this exposes our port. 
-6. When the task has been created, there should be a link for the model. The api html will be available at `{link}:8001/health`
+6. When the task has been created, there should be a link for the model. The api html will be available at `{link}:8001/` since we expose port 8001.
 

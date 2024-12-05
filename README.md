@@ -17,3 +17,19 @@ This project is broken down into 3 sections:
 
 More information for each particular section can be found in their respective READMEs.
 
+
+## Deploying with CircleCI
+
+Some environment variables need to be set in the circleci project for CI/CD to work. These are:
+
+If you plan to use railway, 
+`RAILWAY_SERVICE_NAME`: the name of your railway service
+
+`RAILWAY_TOKEN`: the token of your railway project 
+
+`TWINE_USERNAME`: Twine username 
+
+`TWINE_PASSWORD`: Twine password
+
+
+
