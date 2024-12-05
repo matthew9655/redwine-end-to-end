@@ -98,18 +98,18 @@ jobs:
 
 workflows:
   version: 2
-  # test_prod_and_api:
-  #   jobs:
-  #     - test_app:
-  #       filters:
-  #         branches:
-  #           only:
-  #             - main
-  #     - test_prod:
-  #       filters:
-  #         branches:
-  #           only:
-  #             - main
+  test_prod_and_api:
+    jobs:
+      - test_app:
+        filters:
+          branches:
+            only:
+              - main
+      - test_prod:
+        filters:
+          branches:
+            only:
+              - main
 
   # deploy_app_to_railway:
   #   jobs:
