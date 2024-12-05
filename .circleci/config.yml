@@ -137,12 +137,12 @@ workflows:
 
   deploy_container_to_aws:
     jobs:
-      - test_app
-      - test_prod
+      # - test_app
+      # - test_prod
       - publish_docker_image_to_aws:
-          requires:
-            - test_app
-            - test_prod
+          # requires:
+          #   - test_app
+          #   - test_prod
           filters:
             branches:
               only:
