@@ -91,25 +91,25 @@ jobs:
       - run:
           name: Publishing docker image to aws ECR
           command: |
-            sudo pip install awscli
+            pip install awscli
             chmod +x push_to_aws.sh
             ./push_to_aws.sh
             
 
 workflows:
   version: 2
-  test_prod_and_api:
-    jobs:
-      - test_app:
-        filters:
-          branches:
-            only:
-              - main
-      - test_prod:
-        filters:
-          branches:
-            only:
-              - main
+  # test_prod_and_api:
+  #   jobs:
+  #     - test_app:
+  #       filters:
+  #         branches:
+  #           only:
+  #             - main
+  #     - test_prod:
+  #       filters:
+  #         branches:
+  #           only:
+  #             - main
 
   # deploy_app_to_railway:
   #   jobs:
@@ -136,10 +136,10 @@ workflows:
 
   deploy_container_to_aws:
     jobs:
-      - test_app
+      - test_prod_and_api
       - publish_docker_image_to_aws:
           requires:
-            - test_app
+            - test_prod_and_api
           filters:
             branches:
               only:
