@@ -101,19 +101,20 @@ jobs:
 
 workflows:
   version: 2
-  # test_prod_and_api:
-  #   jobs:
-  #     - test_app:
-  #       filters:
-  #         branches:
-  #           only:
-  #             - main
-  #     - test_prod:
-  #       filters:
-  #         branches:
-  #           only:
-  #             - main
+  test_prod_and_api:
+    jobs:
+      - test_app:
+        filters:
+          branches:
+            only:
+              - main
+      - test_prod:
+        filters:
+          branches:
+            only:
+              - main
 
+  # uncomment if you want to run these workflows
   # deploy_app_to_railway:
   #   jobs:
   #     - test_app
@@ -137,15 +138,15 @@ workflows:
   #             only:
   #               - main
 
-  deploy_container_to_aws:
-    jobs:
-      # - test_app
-      # - test_prod
-      - publish_docker_image_to_aws:
-          # requires:
-          #   - test_app
-          #   - test_prod
-          filters:
-            branches:
-              only:
-                - main
+  # deploy_container_to_aws:
+  #   jobs:
+  #     - test_app
+  #     - test_prod
+  #     - publish_docker_image_to_aws:
+  #         requires:
+  #           - test_app
+  #           - test_prod
+  #         filters:
+  #           branches:
+  #             only:
+  #               - main

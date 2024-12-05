@@ -31,5 +31,13 @@ If you plan to use railway,
 
 `TWINE_PASSWORD`: Twine password
 
+`AWS_ACCESS_KEY_ID`: The access key id in your security credentials 
+
+`AWS_SECRET_ACCESS_KEY`: the access key secret
+
+`AWS_REGION`: your aws region
+
+`AWS_ACC_NUMBER`: your account number id 
+
 
 
