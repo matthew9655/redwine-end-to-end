@@ -92,6 +92,7 @@ jobs:
           name: Publishing docker image to aws ECR
           command: |
             pip install awscli
+            ls
             chmod +x push_to_aws.sh
             ./push_to_aws.sh
             
