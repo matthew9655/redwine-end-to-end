@@ -88,6 +88,8 @@ jobs:
     steps:
       - setup_remote_docker:
           version: default
+      - checkout:
+          path: ~/project
       - run:
           name: Publishing docker image to aws ECR
           command: |
